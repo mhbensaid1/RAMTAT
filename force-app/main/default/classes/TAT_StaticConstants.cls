@@ -116,6 +116,8 @@ public class TAT_StaticConstants {
     public static final String CATEGORY_ALTEA_All_DATA_SETTINGS = 'Altea All Data Settings';
     public static final String CATEGORY_ALTEA_SPECIFIC_DATA_SETTINGS = 'Altea Specific Data Settings';
     public static final String MANAGER = System.Label.Manager;
+    public static final String CATEGORY_JCL_SETTINGS = 'JCL Settings';
+    public static final String JCL_ROLE_MAPPING = 'JCL Role Mapping';
     
     // Profiles
     public static final String PROFILE_PC_ESCALE = System.Label.Profile_PC_Escale;
