@@ -1,10 +1,10 @@
 /**
 * @author         Salesforce TAT Team
 * @date           Apr 12, 2021
-* @description    Management class responsible of fetching crew members from altea
+* @description    Management class responsible of fetching crew members from JCL
 * @history        
 */
-public with sharing class TAT_JCTManagement {
+public class TAT_JCLManagement {
     private static final String DEFAULT_AIRLINE_VALUE = 'AT';
     private static final String USER_ID_SETTING = 'JCL USERID';
     private static final String WEBSERVICE_TIMEOUT = 'JCL WebService Timeout';
@@ -38,6 +38,7 @@ public with sharing class TAT_JCTManagement {
         System.debug('### The Following request to JCL' + flightCrewInput + ' returned no results');
         return null;
     }
+
     /**
      * @description The method will update the flights crew based on an array of rosters & flights
      * @param  crewRosters crews on board
@@ -59,8 +60,9 @@ public with sharing class TAT_JCTManagement {
                     Role__c = role,
                     RecordTypeId = crewMemberRecordTypeId,
                     Manuel__c = false,
+                    Is_Passive__c = '1'.equals(crewRoster.ISPASSIVE),
                     TAT__c = flight.TAT__c,
-                    Matricule_utilisateur__c = crewRoster.EMPNO // TODO : Do we always need to import this attribute ? 
+                    Matricule_utilisateur__c = crewRoster.EMPNO 
                 );
 
                 if(dispatch.Is_Passive__c == true){
@@ -81,12 +83,9 @@ public with sharing class TAT_JCTManagement {
                     dispatch.Vol_Arrivee__c = null;
                 }
                 dispatchMap.put(dispatch.Cle_dispatch_vol__c, dispatch);
-            } else {
-                System.debug(String.format('Cannot update crew members of {0}.. either because no flight was found with the given ID or no role is mapped for {1}',
-                 new List<String>{flightKey, crewRoster.CREWCAT}));
             }
             
-            if(!dispatchMap.empty()){
+            if(!dispatchMap.isEmpty()){
                 TAT_RocadeManagement.insertFlightDispatches(dispatchMap, flights);
             }
         }
@@ -102,6 +101,6 @@ public with sharing class TAT_JCTManagement {
     }
 
     private static String buildFlightKey(TAT_CrewBean.CrewRoster crewRoster){
-        return DEFAULT_AIRLINE_VALUE + crewRoster.FLTNBR + crewRoster.DEP + crewRoster.STARTTIME..left(10).replaceAll('-', '');
+        return DEFAULT_AIRLINE_VALUE + crewRoster.FLTNBR + crewRoster.DEP + crewRoster.STARTTIME.left(10).replaceAll('-', '');
     }
 }
