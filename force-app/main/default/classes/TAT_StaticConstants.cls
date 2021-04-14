@@ -118,6 +118,8 @@ public class TAT_StaticConstants {
     public static final String MANAGER = System.Label.Manager;
     public static final String CATEGORY_JCL_SETTINGS = 'JCL Settings';
     public static final String JCL_ROLE_MAPPING = 'JCL Role Mapping';
+    public static final String USER_ID_SETTING = 'JCL USERID';
+    public static final String WEBSERVICE_TIMEOUT = 'JCL WebService Timeout';
     
     // Profiles
     public static final String PROFILE_PC_ESCALE = System.Label.Profile_PC_Escale;
@@ -140,4 +142,11 @@ public class TAT_StaticConstants {
     //Page Ressource 
     public static final List<String>  LIST_DEFAULT_RESSOURCE = new List<String>{'Agent salle','Agent d\'embarquement','Chef d\'équipe','Cariste','Chauffeur Pushback','Nombre de bagagistes','Nombre agents de nettoyage'};
     public static final List<String>  LIST_DEFAULT_MATERIAL = new List<String>{'GPU','TAPIS A BAGAGE','ESCABEAU','TRACTEUR','PUSHBACK'};
+
+    // Constants
+    public static final String DEFAULT_AIRLINE_VALUE = 'AT';
+    public static final String COMMA = ','; 
+    public static final String HYPHEN = '-'; 
+    public static final String UNDERSCORE = '_'; 
+
 }

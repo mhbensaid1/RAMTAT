@@ -4,7 +4,7 @@
 * @description    Batch responsible of fetching crew members from JCL
 * @history        
 */
-public class TAT_JCLBatch implements Database.Batchable<sObject> {
+public class TAT_JCLBatch implements Database.Batchable<sObject>,Database.AllowsCallouts {
     public final String query;
     public final String startDate;
     public final String endDate;
@@ -39,6 +39,10 @@ public class TAT_JCLBatch implements Database.Batchable<sObject> {
         }
 	}
 
+    /**
+     * @description Hook used to reschedule the batch execution 
+     * @param  BC Batch context
+     */ 
    	public void finish(Database.BatchableContext BC) {
         if (!autoReschedule) {
             return;
