@@ -84,11 +84,11 @@ public class TAT_JCLManagement {
                 }
                 dispatchMap.put(dispatch.Cle_dispatch_vol__c, dispatch);
             }
-            
-            if(!dispatchMap.isEmpty()){
-                TAT_RocadeManagement.insertFlightDispatches(dispatchMap, flights);
-            }
         }
+
+        if(!dispatchMap.isEmpty()){            
+            TAT_RocadeManagement.insertFlightDispatches(dispatchMap, flights);
+        }         
     }
 
     private static TAT_CrewBean.FlightCrewInput populateWSInput(List<Integer> flightNumbers, String startDate, String endDate,String userID){
