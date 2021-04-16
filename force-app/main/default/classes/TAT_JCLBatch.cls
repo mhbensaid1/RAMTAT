@@ -51,7 +51,7 @@ public class TAT_JCLBatch implements Database.Batchable<sObject>,Database.Allows
 		for (CronTrigger job : [
             SELECT	Id
             FROM	CronTrigger
-            WHERE	CronJobDetail.Name = 'JCT JOB'
+            WHERE	CronJobDetail.Name = 'JCL JOB'
         ]) {
             System.abortJob(job.Id);
         }
